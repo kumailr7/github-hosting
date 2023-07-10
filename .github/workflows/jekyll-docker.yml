@@ -18,4 +18,4 @@ jobs:
         docker compose up --build -d 
     - name: Run the Container on Ngrok 
       run: |
-        docker run --net=host -it -e NGROK_AUTHTOKEN=${{ secrets.NGROK_TOKEN }} ngrok/ngrok:latest http 192.168.112.2:5000
+        docker run --net=host -e NGROK_AUTHTOKEN=${{ secrets.NGROK_TOKEN }} ngrok/ngrok:latest http 192.168.112.2:5000
