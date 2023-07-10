@@ -17,6 +17,7 @@ jobs:
       run: |
         docker compose up --build -d 
         docker ps 
+    steps: 
     - name: Set up Ngrok 
     - uses: tzkhan/setup-ngrok@v1
       run: |
