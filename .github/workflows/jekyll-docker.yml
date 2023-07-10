@@ -18,9 +18,8 @@ jobs:
         docker compose up --build -d 
         docker ps 
         docker exec Docker-World sh -c "ngrok http 5000 > /dev/null &"
-    - name: Run the Container on Ngrok 
-      run: |
-        - name: Wait for ngrok tunnel
+   
+    - name: Wait for ngrok tunnel
       run: |
         until curl --silent http://localhost:4040/api/tunnels | grep -q "public_url"; do
           sleep 1
