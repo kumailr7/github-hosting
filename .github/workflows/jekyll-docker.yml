@@ -16,6 +16,16 @@ jobs:
     - name: Build the docker image 
       run: |
         docker compose up --build -d 
+        docker ps 
+        docker exec Docker-World sh -c "ngrok http 5000 > /dev/null &"
     - name: Run the Container on Ngrok 
       run: |
-        docker run --net=host -e NGROK_AUTHTOKEN=${{ secrets.NGROK_TOKEN }} ngrok/ngrok:latest http 192.168.112.2:5000
+        - name: Wait for ngrok tunnel
+      run: |
+        until curl --silent http://localhost:4040/api/tunnels | grep -q "public_url"; do
+          sleep 1
+        done
+      
+    - name: Display ngrok tunnel URL
+      run: |
+        curl --silent http://localhost:4040/api/tunnels | grep "public_url" | awk -F'"' '{print $4}'
