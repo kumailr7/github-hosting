@@ -5,6 +5,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      container_name: Docker-World
+    container_name: Docker-World
     ports:
       - 5000:5000
