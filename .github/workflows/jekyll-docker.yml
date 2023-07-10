@@ -17,6 +17,9 @@ jobs:
       run: |
         docker compose up --build -d 
         docker ps 
+    - name: Set up Ngrok 
+      uses: tzkhan/setup-ngrok@v1
+      run: |
         docker exec Docker-World sh -c "ngrok http 5000 > /dev/null &"
    
     - name: Wait for ngrok tunnel
